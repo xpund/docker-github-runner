@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+  github-runner:
+    image: mainto/github-runner:latest
+    privileged: true
+    volumes:
+      - github-runner-volume:/runner
+    environment:
+      - GIT_URL=<Your-Github-URL> # https://github.com/<USER>/<APP>  (ex) https://github.com/mainto/docker-github-runner
+      - TOKEN=<Token> # You can get here: https://github.com/<USER>/<APP>/settings/actions/runners/new
+    restart: unless-stopped
+volumes:
+  github-runner-volume:

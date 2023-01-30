@@ -1,0 +1,3 @@
+#!/bin/bash
+cp -f /actions-runner/* /runner
+cp -r /actions-runner/* /runner
