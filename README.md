@@ -4,8 +4,8 @@ Self hosted runner on docker container
 
 ## Usage
 
-You don't need to change **docker-compose.yml** file. Just copy reuse the file from repository.
-However, you need to create **.env** file.
+You don't need to change **docker-compose.yml** file. Just copy and use the file from repository.
+However, you need to create a **.env** file.
 
 *Please check **.env.example** file.*
 
