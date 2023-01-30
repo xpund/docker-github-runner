@@ -12,4 +12,4 @@ services:
       - TOKEN=${TOKEN}     # TOKEN from .env file
     restart: unless-stopped
 volumes:
-  github-runner-volume: # it can be used for multiple container because of project name on .env file
+  github-runner-volume: # it can be used for multiple containers because of project name on .env file
