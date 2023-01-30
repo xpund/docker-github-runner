@@ -39,6 +39,9 @@ jobs:
           images: |
             mainto/github-runner
             ghcr.io/${{ github.repository }}
+          tags: |
+            type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', 'main') }}
+            type=semver,pattern={{version}}
       
       - 
         name: Build and push Docker images
