@@ -24,7 +24,11 @@ version: "3"
 
 services:
   github-runner:
-    image: mainto/github-runner:latest
+    # Docker Hub Registry
+    # image: mainto/github-runner:latest
+
+    # Github Container Registry
+    image: ghcr.io/mainto/docker-github-runner:latest
     privileged: true
     volumes:
       - github-runner-volume:/runner
@@ -38,7 +42,7 @@ volumes:
 
 #### .env
 
-```shell
+```bash
 # Project name must be unique on your docker host (for volume)
 COMPOSE_PROJECT_NAME=github-runner
 
