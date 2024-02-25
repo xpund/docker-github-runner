@@ -7,7 +7,10 @@ RUN apt-get update \
 # Install Docker
 ENV DOCKER_CHANNEL=stable \
     DOCKER_VERSION=20.10.22 \
-    DOCKER_COMPOSE_VERSION=2.14.2
+    DOCKER_COMPOSE_VERSION=2.14.2 \
+    RUNNER_VERSION=2.313.0
+
+USER root
 
 RUN set -eux; \
     \
@@ -50,19 +53,18 @@ RUN mkdir actions-runner
 WORKDIR /actions-runner
 
 # Download the latest runner package
-RUN curl -o actions-runner-linux-x64-2.301.1.tar.gz -L https://github.com/actions/runner/releases/download/v2.301.1/actions-runner-linux-x64-2.301.1.tar.gz
+RUN curl -o actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz -L https://github.com/actions/runner/releases/download/v${RUNNER_VERSION}/actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz
 
 # Extract the installer
-RUN tar xzf ./actions-runner-linux-x64-2.301.1.tar.gz
+RUN tar xzf ./actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz
 
 # Install Dependencies
-USER root
 RUN ./bin/installdependencies.sh
 
 # Clean Up
 RUN	apt-get autoremove -y \
 	&& apt-get clean -y \
-	&& rm -rf /var/lib/apt/lists/* 
+	&& rm -rf /var/lib/apt/lists/*
 
 # Create a folder for volumne
 RUN mkdir /runner
